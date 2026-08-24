@@ -127,6 +127,7 @@ plan for a workflow not listed above.
 | `get_economic_calendar` | Global, unfiltered payload bomb: 7 days ≈ 140 KB. Use 1–2 day windows; scan for major-economy events only. |
 | `get_analyst_estimates` | Rows ordered far-future-first — raise `limit` to reach near quarters. |
 | `get_macro_weekly_snapshot` | Needs exact sheet names — discover via `get_macro_weekly_series_catalog` first. |
+| `get_cb_calendar` | `next_meeting` dates can be badly stale (months old). Take meeting dates from `get_rate_probabilities`; use the calendar only for current rates / last change. |
 
 ## Call Discipline
 

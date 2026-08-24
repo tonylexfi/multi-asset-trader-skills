@@ -73,7 +73,7 @@ Lexfi MCP (2026-08-24), **[S]** = schema-reviewed, not yet live-tested.
 | `get_current_market_rates` / `get_rate_curve` [S] | Rates | Rate-differential legwork. |
 | `get_rate_probabilities` [V] | Market-implied CB move odds, ~10 meetings | Bank short code. Snapshot only — no history. |
 | `get_cb_insights` [V] | Hawk/dove, sentiment, uncertainty indices per conference + rolling trend | `fed`/`ecb`/`boe`/`boj`. Decimal-string numerics. Ignore "quote shorts" clip rows. Plan-gated transcripts. |
-| `get_cb_calendar` [V] | Upcoming CB meetings | No params. |
+| `get_cb_calendar` [V] | CB rates + meeting dates | No params. **TRAP: `next_meeting` dates can be badly stale** (verified 2026-08-24: showed Fed "next" as Mar 2026 while `get_rate_probabilities` carried real Sep 2026 meetings). Use it for current rates and last-change context; take meeting DATES from `get_rate_probabilities`. |
 | `get_cb_conference_transcript` [S] | Full CB transcript | Plan-gated (Pro Max); verbatim only. |
 
 ## Macro

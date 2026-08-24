@@ -42,3 +42,20 @@ report date).
 - End-to-end execution of `opportunity-discovery` within budget on a live
   session, logged here (the examples/ scan was produced from the
   bootstrap verification batch).
+
+## 2026-08-24 — First live opportunity-discovery run (dogfood)
+
+Full cross-asset scan executed end-to-end following the skill verbatim:
+13 new calls + 10 reused from session context (cap 18) across all three
+funnel stages. Output honored the contract (named signal families,
+opposing signals, invalidation per entry, "not surfaced but considered",
+conviction capped where families were unknown).
+
+New defect found and fixed: **`get_cb_calendar` `next_meeting` staleness**
+— returned Mar 2026 as the Fed's next meeting while `get_rate_probabilities`
+(fresher, as-of 23–24 Aug) carried the real Sep 2026 meetings. Trap added
+to playbook + tool map: dates from rate_probabilities, calendar for
+rates/last-change only. Also verified live: `get_rate_probabilities` with
+bank omitted returns ALL banks in one call (cheaper than per-bank calls
+for FX divergence work); `get_daily_dxy_index` changePercent confirmed
+DECIMAL per schema (0.049 = +0.05%) — unlike get_daily_fx_pair (percent).
